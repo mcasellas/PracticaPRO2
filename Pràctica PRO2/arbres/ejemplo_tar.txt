@@ -1,0 +1,10 @@
+Para crear el archivo sol.tar se puede usar la instrucción en un terminal:
+
+tar -cvf sol.tar Makefile X13425.cc
+
+
+
+El archivo sol.tar contendrá los archivos: 
+
+Makefile
+X13425.cc
