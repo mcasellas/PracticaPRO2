@@ -32,16 +32,18 @@ void Poblacio::afegir_individu(string nom, const Individu& p){
 
 void Poblacio::escriure_arbre(string nom){ // Mirar estrucutra per amplada !!!!!!!
     
+    cout << "escribir_arbol_genealogico " << nom << endl;
+    
+    if (comprovar_individu(nom)){
+    
     queue<string> cua;
     
     buscar_descendents_cua(cua, buscar_individu(nom));
     
     cout << "  Nivell 0: " << nom << endl;;
     
-    
     int nivell = 1;
     int parelles = 2;
-    
     
     while (not cua.empty()){
         
@@ -64,6 +66,9 @@ void Poblacio::escriure_arbre(string nom){ // Mirar estrucutra per amplada !!!!!
         
         while (cua.front() == "$") cua.pop();
     }
+    }
+    
+    else cout << "  error" << endl;
     
     
 }
@@ -89,20 +94,44 @@ void Poblacio::buscar_descendents_cua(queue<string>& cua, Individu ind){
 void Poblacio::completar_arbre(){
     
     Arbre<string> aparcial, acomplet;
-
     
     llegir_arbre_parcial(aparcial);
     
-    escriure_arbre_string(aparcial);
+    cout << "completar_arbol_genealogico " << aparcial.arrel() << endl;
     
-    buscar_arbre_complet(acomplet, aparcial.arrel());
+    bool valid = comprovar_individu(aparcial.arrel());
     
-    cout << " "; 
+    if (valid) {
     
-    es_arbre_parcial(acomplet, aparcial);
+        buscar_arbre_complet(acomplet, aparcial.arrel());
+        
+        vector<string> resultat;
+        
+        bool parcial = es_arbre_parcial(resultat, acomplet, aparcial);
+        
+        if (parcial) {
+            cout << "  ";
+            escriure_vector(resultat);
+            
+        }
+        
+        else valid = false;
+    
+    }
+    
+    if (not valid) cout << "  no es arbol parcial" << endl;
+    
+    
+}
+
+void Poblacio::escriure_vector(vector<string> resultat){
+    for (int i = 0; i < resultat.size(); i++){
+        cout << resultat[i];
+        if (i != resultat.size()-1) cout << ' ';
+    }
     
     cout << endl;
-    
+
 }
 
 void Poblacio::buscar_arbre_complet(Arbre<string>& arbre, string nom){
@@ -123,27 +152,29 @@ void Poblacio::buscar_arbre_complet(Arbre<string>& arbre, string nom){
 
 }
 
-bool Poblacio::es_arbre_parcial(Arbre<string> acomplet, Arbre<string> aparcial){
+bool Poblacio::es_arbre_parcial(vector<string>& vecresultat, Arbre<string> acomplet, Arbre<string> aparcial){
     
     bool resultat = true;
+ 
     
-    if (acomplet.es_buit()){
-        resultat = false;
-    }
     
-    else {
-        if (aparcial.es_buit()) { // PENSAR A COMPACTAR-HO
-            cout << " " << acomplet.arrel();
+    if (not acomplet.es_buit()) {
+        if (aparcial.es_buit()) { // Si és buit no podem obtenir l'arrel
+            
+            vecresultat.push_back(acomplet.arrel());
         }
         
         else if (aparcial.arrel() == "$" and  acomplet.arrel() != "$"){
-            cout << " *" << acomplet.arrel() << '*';
+            
+            vecresultat.push_back("*"+acomplet.arrel()+"*");
+            
         }
-        else if (aparcial.arrel() == acomplet.arrel()){
-            cout << " " << acomplet.arrel();
+        else if (aparcial.es_buit() or (aparcial.arrel() == acomplet.arrel())){
+            
+            vecresultat.push_back(acomplet.arrel());
         }
         
-        else {
+        else if (aparcial.arrel() != acomplet.arrel()) {
             resultat = false;
         }
         
@@ -151,8 +182,8 @@ bool Poblacio::es_arbre_parcial(Arbre<string> acomplet, Arbre<string> aparcial){
         
         acomplet.fills(ac1, ac2);
         if (not aparcial.es_buit()) aparcial.fills(ap1, ap2);
-        resultat = es_arbre_parcial(ac1, ap1);
-        resultat = es_arbre_parcial(ac2, ap2);
+        if (resultat) resultat = es_arbre_parcial(vecresultat, ac1, ap1);
+        if (resultat) resultat = es_arbre_parcial(vecresultat, ac2, ap2);
         
         
     }
@@ -165,6 +196,7 @@ void Poblacio::llegir_arbre_parcial(Arbre<string>& a){
     Arbre<string> a1, a2;
     string nom;
     cin >> nom;
+
     if (nom != "$") {
         llegir_arbre_parcial(a1);
         llegir_arbre_parcial(a2);
@@ -172,22 +204,15 @@ void Poblacio::llegir_arbre_parcial(Arbre<string>& a){
     }
     
     else a.plantar(nom, a1, a2);
+    
 }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 void Poblacio::escriure_poblacio() const{
+    
+    cout << "escribir_poblacion" << endl;
+    
     for (map<string,Individu>::const_iterator it = poble.begin(); it != poble.end(); it++) {
         cout << "  " << (*it).first << " X" << (*it).second.consultar_sexe() << " (" << (*it).second.consultar_pare() << ',' << (*it).second.consultar_mare() << ')' << endl;
     }
@@ -202,12 +227,14 @@ void Poblacio::llegir_individu(Especie esp){
 
     cin >> nom;
     
+    cout << "anadir_individuo " << nom << endl;
+    
     if (not comprovar_individu(nom)) {
         ind.llegir_individu(esp);
 
         afegir_individu(nom,ind);
         
-        cout << "anadir_individuo " << nom << endl;
+       
     }
     
     else cout << "  error" << endl;

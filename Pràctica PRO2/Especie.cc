@@ -3,9 +3,7 @@
 using namespace std;
 
 Especie::Especie() {
-    n = 0;
-    lx = 0;
-    ly = 0;
+    
 }
 
 void Especie::establir_genetica(){

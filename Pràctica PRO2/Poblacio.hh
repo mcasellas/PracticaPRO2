@@ -7,12 +7,12 @@
 
 #include "Individu.hh"
 #include "Arbre.hh"
-#include "ArbIO.hh"
 
 #ifndef NO_DIAGRAM
 #include <queue>
 #include <iostream>
 #include <map>
+#include <vector>
 
 using namespace std;
 
@@ -72,18 +72,13 @@ public:
     */
     void completar_arbre();
     
-    bool es_arbre_parcial(Arbre<string> acomplet, Arbre<string> aparcial);
+    bool es_arbre_parcial(vector<string>& resultat, Arbre<string> acomplet, Arbre<string> aparcial);
     
     void buscar_arbre_complet(Arbre<string>& arbre, string nom);
     
     void llegir_arbre_parcial(Arbre<string>& nom);
     
-    
-    
-    
-    
-    
-    
+    void escriure_vector(vector<string> resultat);
     
     
     /** @brief Completadora d'arbres.

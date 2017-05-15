@@ -1,6 +1,6 @@
 /** @file Parellcromosomes.hh
-    @brief Especificació de la clase Parell_cromosomes.
-*/
+ @brief Especificació de la clase Parell_cromosomes.
+ */
 
 #ifndef _PARELLCROMOSOMES_HH_
 #define _PARELLCROMOSOMES_HH_
@@ -19,18 +19,17 @@ using namespace std;
  
  Permet llegir i consultar un parell concret de cromosomes.
  */
-class Parell_cromosomes
-{
-
+class Parell_cromosomes {
+    
 public:
-
+    
     // Creadora per defecte
     /** @brief Creadora por defecte.
      
-        S'executa automàticament al declarar un parell de cromosomes.
-        \pre <em>Cert</em>
-        \post El resultat és un parell de cromosomes sense gens.
-    */
+     S'executa automàticament al declarar un parell de cromosomes.
+     \pre <em>Cert</em>
+     \post El resultat és un parell de cromosomes sense gens.
+     */
     Parell_cromosomes();
     
     
@@ -40,7 +39,7 @@ public:
      \post Es retorna el parell de cromosomes corresponent al fill.
      */
     void creuament(Parell_cromosomes pare, Parell_cromosomes mare, int npare, int nmare, int k, int lo);
-
+    
     
     
     /** @brief Lectora del material genètic.
@@ -52,17 +51,17 @@ public:
     
     
     void llegir_cromosomes_sexuals(int llargada_lx, int llargada_ly, char sexe);
-
+    
     void escriure_cromosoma(int num) const;
     
     vector<int> consultar_cromosoma(int num) const;
-
-
+    
+    
 private:
     vector<int> c1;
     vector<int> c2;
-
+    
 };
 
- #endif
+#endif
 

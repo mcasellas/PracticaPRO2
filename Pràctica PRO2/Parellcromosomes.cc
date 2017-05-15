@@ -24,8 +24,8 @@ void Parell_cromosomes::creuament(Parell_cromosomes pare, Parell_cromosomes mare
             resultat2.push_back(segonc[i]);
         }
         else {
-                resultat1.push_back(segonc[i]);
-                resultat2.push_back(primerc[i]);
+            resultat1.push_back(segonc[i]);
+            resultat2.push_back(primerc[i]);
         }
     }
     if (i >= lo){
@@ -53,7 +53,7 @@ void Parell_cromosomes::llegir_cromosomes_no_sexuals(int llargada_parell){
         cin >> alel;
         c1.push_back(alel);
     }
-
+    
     for (int i = 0; i < llargada_parell; i++){
         cin >> alel;
         c2.push_back(alel);

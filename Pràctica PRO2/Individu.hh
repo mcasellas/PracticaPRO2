@@ -42,7 +42,7 @@ public:
     
     
     
-    void reproduir(Individu pare, Individu mare, string npare, string nmare, string nfill, const Especie& esp);
+    void reproduir(Individu pare, Individu mare, string npare, string nmare, const Especie& esp);
 
     
     
@@ -79,7 +79,7 @@ public:
      \pre El paràmetre implicit està inicialitzat.
      \post S'imprimeix pel canal de sortida el genoma de l'individu del paràmetre implicit.
      */
-    void escriure_genotip(Especie esp) const;
+    void escriure_genotip() const;
 
 
     void llegir_individu(Especie esp);

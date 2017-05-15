@@ -40,7 +40,16 @@ int main(){
     cin >> ninicials;
     
     for (int i = 0; i < ninicials; i++) {
-        poble.llegir_individu(esp);
+        Individu ind;
+        string nom;
+        
+        cin >> nom;
+        
+
+            ind.llegir_individu(esp);
+            
+        poble.afegir_individu(nom,ind);
+
         
     }
     
@@ -70,7 +79,7 @@ int main(){
             if (pare.consultar_sexe() != 'Y' or mare.consultar_sexe() != 'X') cout << "  no es posible reproduccion" << endl;
             
             else{
-                fill.reproduir(pare, mare, npare, nmare, nfill, esp);
+                fill.reproduir(pare, mare, npare, nmare, esp);
 
                 poble.afegir_individu(nfill, fill);
             }
@@ -84,8 +93,8 @@ int main(){
             string nom;
             cin >> nom;
             
-            if (poble.comprovar_individu(nom)) poble.escriure_arbre(nom);
-            else cout << "  error" << endl;
+            poble.escriure_arbre(nom);
+            
             
         }
 
@@ -104,11 +113,13 @@ int main(){
             string nom;
             cin >> nom;
             
+            cout << "escribir_genotipo " << nom << endl;
+            
             if (poble.comprovar_individu(nom)){
             
                 ind = poble.buscar_individu(nom);
                 
-                ind.escriure_genotip(esp);
+                ind.escriure_genotip();
             }
             
             else cout << "  error" << endl;

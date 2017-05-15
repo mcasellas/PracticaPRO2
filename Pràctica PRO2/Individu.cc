@@ -6,7 +6,7 @@ Individu::Individu(){
     
 }
 
-void Individu::reproduir(Individu indpare, Individu indmare, string npare, string nmare, string nfill, const Especie& esp){
+void Individu::reproduir(Individu indpare, Individu indmare, string npare, string nmare, const Especie& esp){
     
         int cromo_mare, cromo_pare, punt_tall;
         
@@ -53,7 +53,7 @@ string Individu::consultar_mare() const{
     return mare;
 }
 
-void Individu::escriure_genotip(Especie esp) const{
+void Individu::escriure_genotip() const{
     for (int i = 0; i < adn.size(); i++) {
         if (i == 0){ // Escrivim primer els cromosomes sexuals
             cout << "  X: ";
@@ -70,8 +70,9 @@ void Individu::escriure_genotip(Especie esp) const{
             cout << "  " << i << ".2: ";
             adn[i].escriure_cromosoma(2);
         }
+  
     }
-    cout << endl;
+    
 }
 
 

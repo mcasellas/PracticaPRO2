@@ -7,12 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AE1DDCD81EC37F070040553A /* Especie.cc in Sources */ = {isa = PBXBuildFile; fileRef = AE1DDCCF1EC37F070040553A /* Especie.cc */; };
-		AE1DDCD91EC37F070040553A /* Individu.cc in Sources */ = {isa = PBXBuildFile; fileRef = AE1DDCD11EC37F070040553A /* Individu.cc */; };
-		AE1DDCDA1EC37F070040553A /* main.cc in Sources */ = {isa = PBXBuildFile; fileRef = AE1DDCD31EC37F070040553A /* main.cc */; };
-		AE1DDCDB1EC37F070040553A /* Parelldecromosomes.cc in Sources */ = {isa = PBXBuildFile; fileRef = AE1DDCD51EC37F070040553A /* Parelldecromosomes.cc */; };
-		AE1DDCDC1EC37F070040553A /* Poblacio.cc in Sources */ = {isa = PBXBuildFile; fileRef = AE1DDCD61EC37F070040553A /* Poblacio.cc */; };
-		AEAE39391EC5D19D00AD63CC /* ArbIO.cc in Sources */ = {isa = PBXBuildFile; fileRef = AEAE39371EC5D19D00AD63CC /* ArbIO.cc */; };
+		AEFFE5401ECA2CA500A8CEE8 /* Especie.cc in Sources */ = {isa = PBXBuildFile; fileRef = AEFFE5361ECA2CA500A8CEE8 /* Especie.cc */; };
+		AEFFE5411ECA2CA500A8CEE8 /* Individu.cc in Sources */ = {isa = PBXBuildFile; fileRef = AEFFE5381ECA2CA500A8CEE8 /* Individu.cc */; };
+		AEFFE5421ECA2CA500A8CEE8 /* program.cc in Sources */ = {isa = PBXBuildFile; fileRef = AEFFE53A1ECA2CA500A8CEE8 /* program.cc */; };
+		AEFFE5431ECA2CA500A8CEE8 /* Parellcromosomes.cc in Sources */ = {isa = PBXBuildFile; fileRef = AEFFE53B1ECA2CA500A8CEE8 /* Parellcromosomes.cc */; };
+		AEFFE5441ECA2CA500A8CEE8 /* Poblacio.cc in Sources */ = {isa = PBXBuildFile; fileRef = AEFFE53D1ECA2CA500A8CEE8 /* Poblacio.cc */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,19 +28,17 @@
 
 /* Begin PBXFileReference section */
 		AE1DDCC51EC37EDB0040553A /* Pràctica PRO2 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Pràctica PRO2"; sourceTree = BUILT_PRODUCTS_DIR; };
-		AE1DDCCF1EC37F070040553A /* Especie.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Especie.cc; sourceTree = "<group>"; };
-		AE1DDCD01EC37F070040553A /* Especie.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Especie.hh; sourceTree = "<group>"; };
-		AE1DDCD11EC37F070040553A /* Individu.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Individu.cc; sourceTree = "<group>"; };
-		AE1DDCD21EC37F070040553A /* Individu.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Individu.hh; sourceTree = "<group>"; };
-		AE1DDCD31EC37F070040553A /* main.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cc; sourceTree = "<group>"; };
-		AE1DDCD41EC37F070040553A /* Parellcromosomes.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Parellcromosomes.hh; sourceTree = "<group>"; };
-		AE1DDCD51EC37F070040553A /* Parelldecromosomes.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Parelldecromosomes.cc; sourceTree = "<group>"; };
-		AE1DDCD61EC37F070040553A /* Poblacio.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Poblacio.cc; sourceTree = "<group>"; };
-		AE1DDCD71EC37F070040553A /* Poblacio.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Poblacio.hh; sourceTree = "<group>"; };
-		AEAE39351EC5CF0500AD63CC /* Arbre.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Arbre.hh; sourceTree = "<group>"; };
-		AEAE39361EC5D13C00AD63CC /* PRO2Excepcio.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PRO2Excepcio.hh; sourceTree = "<group>"; };
-		AEAE39371EC5D19D00AD63CC /* ArbIO.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ArbIO.cc; sourceTree = "<group>"; };
-		AEAE39381EC5D19D00AD63CC /* ArbIO.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ArbIO.hh; sourceTree = "<group>"; };
+		AEFFE5351ECA2CA500A8CEE8 /* Arbre.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Arbre.hh; sourceTree = "<group>"; };
+		AEFFE5361ECA2CA500A8CEE8 /* Especie.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Especie.cc; sourceTree = "<group>"; };
+		AEFFE5371ECA2CA500A8CEE8 /* Especie.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Especie.hh; sourceTree = "<group>"; };
+		AEFFE5381ECA2CA500A8CEE8 /* Individu.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Individu.cc; sourceTree = "<group>"; };
+		AEFFE5391ECA2CA500A8CEE8 /* Individu.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Individu.hh; sourceTree = "<group>"; };
+		AEFFE53A1ECA2CA500A8CEE8 /* program.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = program.cc; sourceTree = "<group>"; };
+		AEFFE53B1ECA2CA500A8CEE8 /* Parellcromosomes.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Parellcromosomes.cc; sourceTree = "<group>"; };
+		AEFFE53C1ECA2CA500A8CEE8 /* Parellcromosomes.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Parellcromosomes.hh; sourceTree = "<group>"; };
+		AEFFE53D1ECA2CA500A8CEE8 /* Poblacio.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Poblacio.cc; sourceTree = "<group>"; };
+		AEFFE53E1ECA2CA500A8CEE8 /* Poblacio.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Poblacio.hh; sourceTree = "<group>"; };
+		AEFFE53F1ECA2CA500A8CEE8 /* PRO2Excepcio.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PRO2Excepcio.hh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,19 +71,17 @@
 		AE1DDCC71EC37EDB0040553A /* Pràctica PRO2 */ = {
 			isa = PBXGroup;
 			children = (
-				AE1DDCD31EC37F070040553A /* main.cc */,
-				AE1DDCCF1EC37F070040553A /* Especie.cc */,
-				AE1DDCD01EC37F070040553A /* Especie.hh */,
-				AE1DDCD61EC37F070040553A /* Poblacio.cc */,
-				AE1DDCD71EC37F070040553A /* Poblacio.hh */,
-				AE1DDCD11EC37F070040553A /* Individu.cc */,
-				AE1DDCD21EC37F070040553A /* Individu.hh */,
-				AE1DDCD51EC37F070040553A /* Parelldecromosomes.cc */,
-				AE1DDCD41EC37F070040553A /* Parellcromosomes.hh */,
-				AEAE39351EC5CF0500AD63CC /* Arbre.hh */,
-				AEAE39361EC5D13C00AD63CC /* PRO2Excepcio.hh */,
-				AEAE39371EC5D19D00AD63CC /* ArbIO.cc */,
-				AEAE39381EC5D19D00AD63CC /* ArbIO.hh */,
+				AEFFE53A1ECA2CA500A8CEE8 /* program.cc */,
+				AEFFE5361ECA2CA500A8CEE8 /* Especie.cc */,
+				AEFFE5371ECA2CA500A8CEE8 /* Especie.hh */,
+				AEFFE53D1ECA2CA500A8CEE8 /* Poblacio.cc */,
+				AEFFE53E1ECA2CA500A8CEE8 /* Poblacio.hh */,
+				AEFFE5381ECA2CA500A8CEE8 /* Individu.cc */,
+				AEFFE5391ECA2CA500A8CEE8 /* Individu.hh */,
+				AEFFE53B1ECA2CA500A8CEE8 /* Parellcromosomes.cc */,
+				AEFFE53C1ECA2CA500A8CEE8 /* Parellcromosomes.hh */,
+				AEFFE53F1ECA2CA500A8CEE8 /* PRO2Excepcio.hh */,
+				AEFFE5351ECA2CA500A8CEE8 /* Arbre.hh */,
 			);
 			path = "Pràctica PRO2";
 			sourceTree = "<group>";
@@ -148,12 +143,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE1DDCDA1EC37F070040553A /* main.cc in Sources */,
-				AE1DDCDB1EC37F070040553A /* Parelldecromosomes.cc in Sources */,
-				AE1DDCD81EC37F070040553A /* Especie.cc in Sources */,
-				AEAE39391EC5D19D00AD63CC /* ArbIO.cc in Sources */,
-				AE1DDCD91EC37F070040553A /* Individu.cc in Sources */,
-				AE1DDCDC1EC37F070040553A /* Poblacio.cc in Sources */,
+				AEFFE5401ECA2CA500A8CEE8 /* Especie.cc in Sources */,
+				AEFFE5421ECA2CA500A8CEE8 /* program.cc in Sources */,
+				AEFFE5431ECA2CA500A8CEE8 /* Parellcromosomes.cc in Sources */,
+				AEFFE5411ECA2CA500A8CEE8 /* Individu.cc in Sources */,
+				AEFFE5441ECA2CA500A8CEE8 /* Poblacio.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
