@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "55B36F9DC5E3D7B6CE35720F4C0F2EB742C1079F",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "72CF1001643F16558005F12C322A9F5C27AD0BEA" : 9223372036854775807,
+    "55B36F9DC5E3D7B6CE35720F4C0F2EB742C1079F" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "AB7E2235-3B26-4D74-BA47-6BD46B4EEDDF",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "72CF1001643F16558005F12C322A9F5C27AD0BEA" : "",
+    "55B36F9DC5E3D7B6CE35720F4C0F2EB742C1079F" : "PRACTICA%20Github\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Pràctica PRO2",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Pràctica PRO2.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mcasellas\/PRACTICA-PRO-2.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "55B36F9DC5E3D7B6CE35720F4C0F2EB742C1079F"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mcasellas\/PRO_2.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "72CF1001643F16558005F12C322A9F5C27AD0BEA"
+    }
+  ]
+}

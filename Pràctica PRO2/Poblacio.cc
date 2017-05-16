@@ -36,11 +36,16 @@ void Poblacio::escriure_arbre(string nom){
     if (comprovar_individu(nom)){
         Arbre<string> complet;
         
-        queue<Arbre<string>> cua;
+        list<string> llista;
         
-        buscar_arbre_complet(complet, nom);
+        llista.push_back(nom);
         
-        buscar_arbre_nivells(complet, cua);
+        
+        buscar_arbre_nivells(buscar_individu(nom), llista);
+        
+        for (list<string>::iterator it = llista.begin(); it != llista.end(); it++){
+            cout << " " << *it;
+        }
 
         
     }
@@ -48,49 +53,20 @@ void Poblacio::escriure_arbre(string nom){
     else cout << "  error" << endl;
 }
 
-void Poblacio::buscar_arbre_nivells(Arbre<string> complet, queue<Arbre<string>> cua){
+void Poblacio::buscar_arbre_nivells(Individu ind, list<string>& llista){
     
-    cua.push(complet);
+    list<string>::iterator it = llista.end();
     
+    if (ind.consultar_pare() != "$") {
+   
+        
+        llista.insert(it, ind.consultar_pare());
+        llista.insert(it, ind.consultar_mare());
 
+        buscar_arbre_nivells(buscar_individu(ind.consultar_pare()), llista);
+        buscar_arbre_nivells(buscar_individu(ind.consultar_mare()), llista);
 
-    while (not cua.empty()) {
-        
-        Arbre<string> subarbre = cua.front();
-        cua.pop();
-        
-        cout << " " << subarbre.arrel();
-       
-        if (not complet.es_buit()){
-            
-            Arbre<string> a1, a2;
-            
-            subarbre.fills(a1, a2);
-       
-            
-                if (a1.arrel() != "$") {
-                    cua.push(a1);
-                  
-                   
-                }
-            
-            
-            
-                if (a2.arrel() != "$"){
-                    cua.push(a2);
-                   
-                   
-                }
-            
-            
-            
-          
-        }
-        
-        
-        
     }
-
     
 }
 
