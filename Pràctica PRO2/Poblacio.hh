@@ -61,7 +61,7 @@ public:
     */
     void escriure_arbre(string nom);
     
-    void buscar_arbre_nivells(Arbre<string> complet, queue<Arbre<string>> cua, int nivell);
+    void buscar_arbre_nivells(Arbre<string> complet, queue<Arbre<string>> cua);
     
     
     void buscar_descendents_cua(queue<string>& cua, Individu ind);

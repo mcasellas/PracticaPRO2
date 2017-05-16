@@ -40,45 +40,55 @@ void Poblacio::escriure_arbre(string nom){
         
         buscar_arbre_complet(complet, nom);
         
-        int nivell = 0;
-        
-        buscar_arbre_nivells(complet, cua, nivell);
-        
-        
-        
-        
-        
+        buscar_arbre_nivells(complet, cua);
+
         
     }
     
     else cout << "  error" << endl;
 }
 
-void Poblacio::buscar_arbre_nivells(Arbre<string> complet, queue<Arbre<string>> cua, int nivell){
+void Poblacio::buscar_arbre_nivells(Arbre<string> complet, queue<Arbre<string>> cua){
     
     cua.push(complet);
     
+
+
     while (not cua.empty()) {
         
         Arbre<string> subarbre = cua.front();
         cua.pop();
         
         cout << " " << subarbre.arrel();
-        
+       
         if (not complet.es_buit()){
-        
-        Arbre<string> a1, a2;
-        
-        subarbre.fills(a1, a2);
-        
-            if (a1.arrel() != "$") {
-                cua.push(a1);
-            }
-        
-            if (a2.arrel() != "$"){
-                cua.push(a2);
-            }
+            
+            Arbre<string> a1, a2;
+            
+            subarbre.fills(a1, a2);
+       
+            
+                if (a1.arrel() != "$") {
+                    cua.push(a1);
+                  
+                   
+                }
+            
+            
+            
+                if (a2.arrel() != "$"){
+                    cua.push(a2);
+                   
+                   
+                }
+            
+            
+            
+          
         }
+        
+        
+        
     }
 
     
