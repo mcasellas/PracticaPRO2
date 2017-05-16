@@ -61,6 +61,8 @@ public:
     */
     void escriure_arbre(string nom);
     
+    void buscar_arbre_nivells(Arbre<string> complet, queue<Arbre<string>> cua, int nivell);
+    
     
     void buscar_descendents_cua(queue<string>& cua, Individu ind);
     
@@ -79,6 +81,8 @@ public:
     void llegir_arbre_parcial(Arbre<string>& nom);
     
     void escriure_vector(vector<string> resultat);
+    
+    void escriure_temp(Arbre<string>); //temporal!
     
     
     /** @brief Completadora d'arbres.

@@ -30,53 +30,119 @@ void Poblacio::afegir_individu(string nom, const Individu& p){
     poble[nom] = p;
 }
 
-void Poblacio::escriure_arbre(string nom){ // Mirar estrucutra per amplada !!!!!!!
-    
+void Poblacio::escriure_arbre(string nom){
     cout << "escribir_arbol_genealogico " << nom << endl;
     
     if (comprovar_individu(nom)){
-    
-    queue<string> cua;
-    
-    buscar_descendents_cua(cua, buscar_individu(nom));
-    
-    cout << "  Nivell 0: " << nom << endl;;
-    
-    int nivell = 1;
-    int parelles = 2;
-    
-    while (not cua.empty()){
+        Arbre<string> complet;
+        
+        queue<Arbre<string>> cua;
+        
+        buscar_arbre_complet(complet, nom);
+        
+        int nivell = 0;
+        
+        buscar_arbre_nivells(complet, cua, nivell);
         
         
         
-        cout << "  Nivell " << nivell << ": ";
         
-        int i = 0;
         
-        while (i < parelles and not cua.empty()) {
-            if (cua.front() != "$") cout << cua.front();
-            if (i < parelles-1) cout << " ";
-            cua.pop();
-            ++i;
-        }
         
-        cout << endl;
-        ++nivell;
-        parelles *= 2;
-        
-        while (cua.front() == "$") cua.pop();
-    }
     }
     
     else cout << "  error" << endl;
+}
+
+void Poblacio::buscar_arbre_nivells(Arbre<string> complet, queue<Arbre<string>> cua, int nivell){
     
+    cua.push(complet);
+    
+    while (not cua.empty()) {
+        
+        Arbre<string> subarbre = cua.front();
+        cua.pop();
+        
+        cout << " " << subarbre.arrel();
+        
+        if (not complet.es_buit()){
+        
+        Arbre<string> a1, a2;
+        
+        subarbre.fills(a1, a2);
+        
+            if (a1.arrel() != "$") {
+                cua.push(a1);
+            }
+        
+            if (a2.arrel() != "$"){
+                cua.push(a2);
+            }
+        }
+    }
+
     
 }
 
+void Poblacio::escriure_temp(Arbre<string> a){
+    if (not a.es_buit()) {
+        Arbre<string> a1;
+        Arbre<string> a2;
+        string x = a.arrel();
+        a.fills(a1,a2);
+        escriure_temp(a1);
+        cout << " " << x;
+        escriure_temp(a2);
+        a.plantar(x,a1,a2);
+    }
+}
+
+//void Poblacio::escriure_arbre(string nom){ // Mirar estrucutra per amplada !!!!!!!
+//    
+//    cout << "escribir_arbol_genealogico " << nom << endl;
+//    
+//    if (comprovar_individu(nom)){
+//    
+//    queue<string> cua;
+//    
+//    buscar_descendents_cua(cua, buscar_individu(nom));
+//    
+//    cout << "  Nivell 0: " << nom << endl;;
+//    
+//    int nivell = 1;
+//    int parelles = 2;
+//    
+//    while (not cua.empty()){
+//        
+//        
+//        
+//        cout << "  Nivell " << nivell << ": ";
+//        
+//        int i = 0;
+//        
+//        while (i < parelles and not cua.empty()) {
+//            if (cua.front() != "$") cout << cua.front();
+//            if (i < parelles-1) cout << " ";
+//            cua.pop();
+//            ++i;
+//        }
+//        
+//        cout << endl;
+//        ++nivell;
+//        parelles *= 2;
+//        
+//        while (cua.front() == "$") cua.pop();
+//    }
+//    }
+//    
+//    else cout << "  error" << endl;
+//    
+//    
+//}
+
 void Poblacio::buscar_descendents_cua(queue<string>& cua, Individu ind){
     
-    
-    
+
     if (ind.consultar_pare() == "$") {
         cua.push("$");
         cua.push("$");
@@ -216,7 +282,7 @@ void Poblacio::escriure_poblacio() const{
     for (map<string,Individu>::const_iterator it = poble.begin(); it != poble.end(); it++) {
         cout << "  " << (*it).first << " X" << (*it).second.consultar_sexe() << " (" << (*it).second.consultar_pare() << ',' << (*it).second.consultar_mare() << ')' << endl;
     }
-    cout << endl;
+
 }
 
 
