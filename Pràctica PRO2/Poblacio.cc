@@ -57,17 +57,16 @@ void Poblacio::buscar_arbre_nivells(Individu ind, list<string>& llista){
     
     list<string>::iterator it = llista.end();
     
+    list<string> seguent_nivell;
+    
     if (ind.consultar_pare() != "$") {
    
-        
         llista.insert(it, ind.consultar_pare());
         llista.insert(it, ind.consultar_mare());
 
         buscar_arbre_nivells(buscar_individu(ind.consultar_pare()), llista);
         buscar_arbre_nivells(buscar_individu(ind.consultar_mare()), llista);
-
     }
-    
 }
 
 void Poblacio::escriure_temp(Arbre<string> a){
