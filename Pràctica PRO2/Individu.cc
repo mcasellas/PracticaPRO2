@@ -56,18 +56,19 @@ string Individu::consultar_mare() const{
 void Individu::escriure_genotip() const{
     for (int i = 0; i < adn.size(); i++) {
         if (i == 0){ // Escrivim primer els cromosomes sexuals
-            cout << "  X: ";
+            cout << "  X:";
             adn[i].escriure_cromosoma(1);
         
-            cout << "  Y: ";
+            if (sexe == 'Y') cout << "  Y:";
+            else  cout << "  X:";
             adn[i].escriure_cromosoma(2);
         }
         
         else {
-            cout << "  " << i << ".1: ";
+            cout << "  " << i << ".1:";
             adn[i].escriure_cromosoma(1);
             
-            cout << "  " << i << ".2: ";
+            cout << "  " << i << ".2:";
             adn[i].escriure_cromosoma(2);
         }
   

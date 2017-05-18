@@ -35,8 +35,6 @@ int main(){
     
     int ninicials;
     
-    
-    
     cin >> ninicials;
     
     for (int i = 0; i < ninicials; i++) {
@@ -45,8 +43,7 @@ int main(){
         
         cin >> nom;
         
-
-            ind.llegir_individu(esp);
+        ind.llegir_individu(esp);
             
         poble.afegir_individu(nom,ind);
 
@@ -126,7 +123,7 @@ int main(){
         }
     }
     
-    cout << "  acabar" << endl;
+    cout << "acabar" << endl;
 
     
     
