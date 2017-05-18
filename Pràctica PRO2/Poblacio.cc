@@ -36,16 +36,33 @@ void Poblacio::escriure_arbre(string nom){
     if (comprovar_individu(nom)){
         Arbre<string> complet;
         
-        list<string> llista;
+        queue<string> cua_temp, cua_final;
+        queue<int> niv_temp, niv_final;
         
-        llista.push_back(nom);
+        cua_temp.push(nom);
+        
+        niv_temp.push(0);
+        
+        buscar_arbre_nivells(buscar_individu(nom), cua_temp, cua_final, niv_temp, niv_final);
         
         
-        buscar_arbre_nivells(buscar_individu(nom), llista);
+        int nivell = -1;
         
-        for (list<string>::iterator it = llista.begin(); it != llista.end(); it++){
-            cout << " " << *it;
+        while (not cua_final.empty()) {
+            
+            if (nivell != niv_final.front()) {
+                if (nivell != -1) cout << endl;
+                nivell = niv_final.front();
+                cout << "  Nivel " << nivell << ':';
+            }
+            
+            cout << " " << cua_final.front();
+            
+            cua_final.pop();
+            niv_final.pop();
         }
+        
+        cout << endl;
 
         
     }
@@ -53,19 +70,29 @@ void Poblacio::escriure_arbre(string nom){
     else cout << "  error" << endl;
 }
 
-void Poblacio::buscar_arbre_nivells(Individu ind, list<string>& llista){
-    
-    list<string>::iterator it = llista.end();
-    
-    list<string> seguent_nivell;
-    
-    if (ind.consultar_pare() != "$") {
-   
-        llista.insert(it, ind.consultar_pare());
-        llista.insert(it, ind.consultar_mare());
+void Poblacio::buscar_arbre_nivells(Individu ind, queue<string>& cua_temp, queue<string>& cua_final, queue<int>& niv_temp, queue<int>& niv_final){
 
-        buscar_arbre_nivells(buscar_individu(ind.consultar_pare()), llista);
-        buscar_arbre_nivells(buscar_individu(ind.consultar_mare()), llista);
+    while (not cua_temp.empty()){
+        
+        ind = buscar_individu(cua_temp.front());
+        
+        cua_final.push(cua_temp.front());
+        niv_final.push(niv_temp.front());
+        
+        if (ind.consultar_pare() != "$" or ind.consultar_mare() != "$") {
+            
+        
+            
+            cua_temp.push(ind.consultar_pare());
+            niv_temp.push(niv_temp.front()+1);
+            
+            cua_temp.push(ind.consultar_mare());
+            niv_temp.push(niv_temp.front()+1);
+        }
+            cua_temp.pop();
+            niv_temp.pop();
+            
+        
     }
 }
 
@@ -82,7 +109,7 @@ void Poblacio::escriure_temp(Arbre<string> a){
     }
 }
 
-//void Poblacio::escriure_arbre(string nom){ // Mirar estrucutra per amplada !!!!!!!
+//void Poblacio::escriure_arbre(string nom){ // Això no anira ni de conya
 //    
 //    cout << "escribir_arbol_genealogico " << nom << endl;
 //    
@@ -92,7 +119,7 @@ void Poblacio::escriure_temp(Arbre<string> a){
 //    
 //    buscar_descendents_cua(cua, buscar_individu(nom));
 //    
-//    cout << "  Nivell 0: " << nom << endl;;
+//    cout << "  Nivell 0: " << nom << endl;
 //    
 //    int nivell = 1;
 //    int parelles = 2;

@@ -101,7 +101,7 @@ int main(){
         else if (accio == "completar_arbol_genealogico"){
             poble.completar_arbre();
             
-            //cout << "no es arbol parcial" << endl;
+            
         }
 
         else if (accio == "escribir_poblacion"){
@@ -125,6 +125,8 @@ int main(){
             else cout << "  error" << endl;
         }
     }
+    
+    cout << "  acabar" << endl;
 
     
     

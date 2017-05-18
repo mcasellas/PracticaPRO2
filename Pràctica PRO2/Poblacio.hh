@@ -9,7 +9,6 @@
 #include "Arbre.hh"
 
 #ifndef NO_DIAGRAM
-#include <list>
 #include <queue>
 #include <iostream>
 #include <map>
@@ -62,7 +61,7 @@ public:
     */
     void escriure_arbre(string nom);
     
-    void buscar_arbre_nivells(Individu nom, list<string>& llista);
+    void buscar_arbre_nivells(Individu ind, queue<string>& cua_temp, queue<string>& cua_final, queue<int>& niv_temp, queue<int>& niv_final);
     
     
     void buscar_descendents_cua(queue<string>& cua, Individu ind);
