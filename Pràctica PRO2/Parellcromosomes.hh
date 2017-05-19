@@ -54,12 +54,15 @@ public:
     
     void escriure_cromosoma(int num) const;
     
-    vector<int> consultar_cromosoma(int num) const;
+    
     
     
 private:
     vector<int> c1;
     vector<int> c2;
+    
+    
+    vector<int> consultar_cromosoma(int num) const;
     
 };
 

@@ -40,7 +40,7 @@ public:
         \pre El paràmetre implicit està inicialitzat, l'explícit conté el nom de l'individu a buscar.
         \post Retorna l'individu que correspon al nom.
     */
-    Individu buscar_individu(string nom);
+    Individu consultar_individu(string nom);
     
     /** @brief Inclosora de la població.
      
@@ -52,10 +52,10 @@ public:
     
     bool comprovar_reproduccio(string npare, string nmare, string nfill);
     
-    bool buscar_descendent(Individu ind, string nom);
     
     
-    bool comprovar_individu(string nom);
+    
+    bool existeix_individu(string nom);
 
 
     /** @brief Escriptora de l'arbre geneaològic d'un individu.
@@ -63,9 +63,7 @@ public:
         \pre El paràmetre implicit està inicialitzat. Es prepara pel canal d'entrada el nom de l'individu que serà l'arrel de l'arbre.
         \post S'imprimeix pel canal d'entrada l'arbre complet amb arrel establerta a l'individu.
     */
-    void escriure_arbre(string nom);
-    
-    void buscar_arbre_nivells(Individu ind, queue<string>& cua_temp, queue<string>& cua_final, queue<int>& niv_temp, queue<int>& niv_final);
+    void escriure_arbre_genealogic(string nom);
     
     
     /** @brief Completadora d'arbres.
@@ -75,13 +73,13 @@ public:
     */
     void completar_arbre();
     
-    bool es_arbre_parcial(vector<string>& resultat, Arbre<string> acomplet, Arbre<string> aparcial);
     
-    void buscar_arbre_complet(Arbre<string>& arbre, string nom);
     
-    void llegir_arbre_parcial(Arbre<string>& nom);
     
-    void escriure_vector(vector<string> resultat);
+    
+    
+    
+
    
     
     
@@ -96,6 +94,19 @@ public:
     void llegir_individu(Especie esp);
 
 private:
+    
+    bool buscar_ascendent(Individu ind, string nom);
+    
+    void buscar_arbre(Arbre<string>& arbre, string nom);
+    
+    bool es_arbre_parcial(vector<string>& resultat, Arbre<string> acomplet, Arbre<string> aparcial);
+    
+    void llegir_arbre_parcial(Arbre<string>& nom);
+    
+    
+    
+    
+    
     map<string,Individu> poble;
 };
 

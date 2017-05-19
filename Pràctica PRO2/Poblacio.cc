@@ -6,7 +6,7 @@ Poblacio::Poblacio(){
     
 }
 
-Individu Poblacio::buscar_individu(string nom){
+Individu Poblacio::consultar_individu(string nom){
     
     map<string,Individu>::const_iterator it;
     
@@ -14,11 +14,11 @@ Individu Poblacio::buscar_individu(string nom){
     
     return (*it).second;
     
-
 }
 
-bool Poblacio::comprovar_individu(string nom){
-    for (map<string,Individu>::const_iterator it = poble.begin(); it != poble.end(); it++) {
+bool Poblacio::existeix_individu(string nom){
+    
+    for (map<string,Individu>::iterator it = poble.begin(); it != poble.end(); it++) {
         if ((*it).first == nom) return true;
     }
     
@@ -26,7 +26,6 @@ bool Poblacio::comprovar_individu(string nom){
 }
 
 void Poblacio::afegir_individu(string nom, const Individu& p){
-
     poble[nom] = p;
 }
 
@@ -34,11 +33,10 @@ bool Poblacio::comprovar_reproduccio(string npare, string nmare, string nfill){
     
     cout << "reproduccion_sexual " << nmare << ' ' << npare << ' ' << nfill << endl;
     
-    
     bool resultat = true;
     
-    resultat = comprovar_individu(npare) and comprovar_individu(nmare); // El nom dels pares estàn al sistema
-    if (resultat) resultat = not comprovar_individu(nfill); // El nom del fill no apareix al sistema
+    resultat = existeix_individu(npare) and existeix_individu(nmare); // El nom dels pares estàn al sistema
+    if (resultat) resultat = not existeix_individu(nfill); // El nom del fill no apareix al sistema
     
     if (not resultat) cout << "  error" << endl;
     
@@ -46,17 +44,17 @@ bool Poblacio::comprovar_reproduccio(string npare, string nmare, string nfill){
         
         Individu pare, mare;
         
-        pare = buscar_individu(npare);
-        mare = buscar_individu(nmare);
+        pare = consultar_individu(npare);
+        mare = consultar_individu(nmare);
         
-        resultat = pare.consultar_sexe() == 'Y' and mare.consultar_sexe() == 'X';
+        resultat = consultar_individu(npare).consultar_sexe() == 'Y' and consultar_individu(nmare).consultar_sexe() == 'X';
         
-        if (resultat and (pare.consultar_pare() != "$" or mare.consultar_pare() != "$")) resultat = (pare.consultar_pare() != mare.consultar_pare()) or (pare.consultar_mare() != mare.consultar_mare());
+        if (resultat and (consultar_individu(npare).consultar_pare() != "$" or consultar_individu(nmare).consultar_pare() != "$")) resultat = (consultar_individu(npare).consultar_pare() != consultar_individu(nmare).consultar_pare()) or (consultar_individu(npare).consultar_mare() != consultar_individu(nmare).consultar_mare());
     
         
-        if (resultat) resultat = not buscar_descendent(pare, nmare);
+        if (resultat) resultat = not buscar_ascendent(consultar_individu(npare), nmare);
         
-        if (resultat) resultat = not buscar_descendent(mare, npare);
+        if (resultat) resultat = not buscar_ascendent(consultar_individu(nmare), npare);
         
         if (not resultat) cout << "  no es posible reproduccion" << endl;
     }
@@ -67,51 +65,56 @@ bool Poblacio::comprovar_reproduccio(string npare, string nmare, string nfill){
     
 }
 
-bool Poblacio::buscar_descendent(Individu ind, string nom){
+bool Poblacio::buscar_ascendent(Individu ind, string nom){
     
     bool resultat = false;
     
     if (ind.consultar_mare() == nom or ind.consultar_pare() == nom) resultat = true;
     
     else if (ind.consultar_pare() != "$") {
-        resultat = buscar_descendent(buscar_individu(ind.consultar_pare()), nom);
-        if (not resultat) resultat = buscar_descendent(buscar_individu(ind.consultar_mare()), nom);
+        resultat = buscar_ascendent(consultar_individu(ind.consultar_pare()), nom);
+        if (not resultat) resultat = buscar_ascendent(consultar_individu(ind.consultar_mare()), nom);
     }
     
     return resultat;
     
 }
 
-void Poblacio::escriure_arbre(string nom){
+void Poblacio::escriure_arbre_genealogic(string nom){
     cout << "escribir_arbol_genealogico " << nom << endl;
     
-    if (comprovar_individu(nom)){
+    if (existeix_individu(nom)){
         Arbre<string> complet;
         
-        queue<string> cua_temp, cua_final;
-        queue<int> niv_temp, niv_final;
+        queue<string> cua_nom;
+        queue<int> cua_niv;
         
-        cua_temp.push(nom);
+        cua_nom.push(nom);
         
-        niv_temp.push(0);
-        
-        buscar_arbre_nivells(buscar_individu(nom), cua_temp, cua_final, niv_temp, niv_final);
-        
+        cua_niv.push(0);
         
         int nivell = -1;
         
-        while (not cua_final.empty()) {
+        while (not cua_nom.empty()) {
             
-            if (nivell != niv_final.front()) {
+            if (consultar_individu(cua_nom.front()).consultar_pare() != "$") { // Amb comprovar-ne un n'hi ha prou
+                cua_nom.push(consultar_individu(cua_nom.front()).consultar_pare());
+                cua_niv.push(cua_niv.front()+1);
+                
+                cua_nom.push(consultar_individu(cua_nom.front()).consultar_mare());
+                cua_niv.push(cua_niv.front()+1);
+            }
+            
+            if (nivell != cua_niv.front()) {
                 if (nivell != -1) cout << endl;
-                nivell = niv_final.front();
+                nivell = cua_niv.front();
                 cout << "  Nivel " << nivell << ':';
             }
             
-            cout << " " << cua_final.front();
+            cout << " " << cua_nom.front();
             
-            cua_final.pop();
-            niv_final.pop();
+            cua_nom.pop();
+            cua_niv.pop();
         }
         
         cout << endl;
@@ -122,32 +125,6 @@ void Poblacio::escriure_arbre(string nom){
     else cout << "  error" << endl;
 }
 
-void Poblacio::buscar_arbre_nivells(Individu ind, queue<string>& cua_temp, queue<string>& cua_final, queue<int>& niv_temp, queue<int>& niv_final){
-
-    while (not cua_temp.empty()){
-        
-        ind = buscar_individu(cua_temp.front());
-        
-        cua_final.push(cua_temp.front());
-        niv_final.push(niv_temp.front());
-        
-        if (ind.consultar_pare() != "$" or ind.consultar_mare() != "$") {
-            
-        
-            
-            cua_temp.push(ind.consultar_pare());
-            niv_temp.push(niv_temp.front()+1);
-            
-            cua_temp.push(ind.consultar_mare());
-            niv_temp.push(niv_temp.front()+1);
-        }
-            cua_temp.pop();
-            niv_temp.pop();
-            
-        
-    }
-}
-
 void Poblacio::completar_arbre(){
     
     Arbre<string> aparcial, acomplet;
@@ -156,11 +133,11 @@ void Poblacio::completar_arbre(){
     
     cout << "completar_arbol_genealogico " << aparcial.arrel() << endl;
     
-    bool valid = comprovar_individu(aparcial.arrel());
+    bool valid = existeix_individu(aparcial.arrel());
     
     if (valid) {
     
-        buscar_arbre_complet(acomplet, aparcial.arrel());
+        buscar_arbre(acomplet, aparcial.arrel());
         
         vector<string> resultat;
         
@@ -168,7 +145,13 @@ void Poblacio::completar_arbre(){
         
         if (parcial) {
             cout << "  ";
-            escriure_vector(resultat);
+            
+            for (int i = 0; i < resultat.size(); i++){
+                cout << resultat[i];
+                if (i != resultat.size()-1) cout << ' ';
+            }
+            
+            cout << endl;
             
         }
         
@@ -181,27 +164,16 @@ void Poblacio::completar_arbre(){
     
 }
 
-void Poblacio::escriure_vector(vector<string> resultat){ // Es podria posar en la funció
-    for (int i = 0; i < resultat.size(); i++){
-        cout << resultat[i];
-        if (i != resultat.size()-1) cout << ' ';
-    }
-    
-    cout << endl;
 
-}
-
-void Poblacio::buscar_arbre_complet(Arbre<string>& arbre, string nom){
+void Poblacio::buscar_arbre(Arbre<string>& arbre, string nom){
     
     Arbre<string> a1, a2;
     
     if (nom != "$"){
-        Individu ind = buscar_individu(nom);
+        Individu ind = consultar_individu(nom);
         
-        
-        
-        buscar_arbre_complet(a1, ind.consultar_pare());
-        buscar_arbre_complet(a2, ind.consultar_mare());
+        buscar_arbre(a1, consultar_individu(nom).consultar_pare());
+        buscar_arbre(a2, consultar_individu(nom).consultar_mare());
         arbre.plantar(nom, a1, a2);
     }
     
@@ -280,19 +252,17 @@ void Poblacio::escriure_poblacio() const{
 
 void Poblacio::llegir_individu(Especie esp){
     
-    Individu ind;
     string nom;
 
     cin >> nom;
     
     cout << "anadir_individuo " << nom << endl;
     
-    if (not comprovar_individu(nom)) {
+    if (not existeix_individu(nom)) {
+        Individu ind;
         ind.llegir_individu(esp);
 
         afegir_individu(nom,ind);
-        
-       
     }
     
     else cout << "  error" << endl;

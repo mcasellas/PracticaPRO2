@@ -53,12 +53,7 @@ public:
     */
     char consultar_sexe() const;
     
-    /** @brief Consultora d'un parell de cromosomes.
-     
-     \pre El paràmetre implicit està inicialitzat, l'explícit conté el parell de cromosomes que es vol.
-     \post Es retorna el parell de cromosomes corresponent.
-     */
-    Parell_cromosomes consultar_parell_cromosomes(int i);
+    
     
     /** @brief Consultora del nom del pare de l'individu.
      
@@ -89,6 +84,15 @@ private:
     vector<Parell_cromosomes> adn;
     string pare;
     string mare;
+    
+    
+    
+    /** @brief Consultora d'un parell de cromosomes.
+     
+     \pre El paràmetre implicit està inicialitzat, l'explícit conté el parell de cromosomes que es vol.
+     \post Es retorna el parell de cromosomes corresponent.
+     */
+    Parell_cromosomes consultar_parell_cromosomes(int i);
 };
 
  #endif

@@ -80,9 +80,6 @@ void Individu::escriure_genotip() const{
 void Individu::llegir_individu(Especie esp){
     
     cin >> sexe;
-    
-    
-    
 
     // Cromosomes sexuals
         Parell_cromosomes parell;

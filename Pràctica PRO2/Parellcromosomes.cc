@@ -75,25 +75,16 @@ void Parell_cromosomes::llegir_cromosomes_sexuals(int primer, int segon, char se
     }
 }
 
-void Parell_cromosomes::escriure_cromosoma(int num) const{
-    if (num == 1) {
-        for (int i = 0; i < c1.size(); i++) {
-            cout << " ";
-            cout << c1[i];
-        }
-        
-        cout << endl;
-    }
-    else {
-        for (int i = 0; i < c2.size(); i++) {
-            cout << " ";
-            cout << c2[i];
-        }
-        cout << endl;
-    }
+void Parell_cromosomes::escriure_cromosoma(int num) const {
+    
+    if (num == 1) for (int i = 0; i < c1.size(); i++) cout << " " << c1[i];
+    
+    else for (int i = 0; i < c2.size(); i++) cout << " " << c2[i];
+    
+    cout << endl;
 }
 
-vector<int> Parell_cromosomes::consultar_cromosoma(int num) const{
+vector<int> Parell_cromosomes::consultar_cromosoma(int num) const {
     if (num == 0) return c1;
     else return c2;
 }

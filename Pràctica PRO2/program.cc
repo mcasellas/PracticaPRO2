@@ -63,29 +63,19 @@ int main(){
             cin >> nmare >> npare >> nfill;
             
             if (poble.comprovar_reproduccio(npare, nmare, nfill)){
+                
+                Individu fill;
 
-                Individu pare, mare, fill;
-                
-                mare = poble.buscar_individu(nmare);
-                pare = poble.buscar_individu(npare);
-                
-                fill.reproduir(pare, mare, npare, nmare, esp);
+                fill.reproduir(poble.consultar_individu(npare), poble.consultar_individu(nmare), npare, nmare, esp);
 
                 poble.afegir_individu(nfill, fill);
             }
-        
         }
-                
- 
-
-        else if (accio == "escribir_arbol_genealogico"){
         
+        else if (accio == "escribir_arbol_genealogico"){
             string nom;
             cin >> nom;
-            
-            poble.escriure_arbre(nom);
-            
-            
+            poble.escriure_arbre_genealogic(nom);
         }
 
         else if (accio == "completar_arbol_genealogico"){
@@ -97,18 +87,12 @@ int main(){
         }
 
         else if (accio == "escribir_genotipo"){
-            Individu ind;
             string nom;
             cin >> nom;
             
             cout << "escribir_genotipo " << nom << endl;
             
-            if (poble.comprovar_individu(nom)){
-            
-                ind = poble.buscar_individu(nom);
-                
-                ind.escriure_genotip();
-            }
+            if (poble.existeix_individu(nom)) poble.consultar_individu(nom).escriure_genotip();
             
             else cout << "  error" << endl;
         }
