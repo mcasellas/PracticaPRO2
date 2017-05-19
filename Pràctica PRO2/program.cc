@@ -62,28 +62,21 @@ int main(){
             string nmare, npare, nfill;
             cin >> nmare >> npare >> nfill;
             
-            cout << "reproduccion_sexual " << nmare << ' ' << npare << ' ' << nfill << endl;
+            if (poble.comprovar_reproduccio(npare, nmare, nfill)){
 
-            Individu pare, mare, fill;
-            
-            if (not poble.comprovar_individu(nmare) or not poble.comprovar_individu(npare) or poble.comprovar_individu(nfill)) cout << "  error" << endl;
-            
-            else {
-            
-            mare = poble.buscar_individu(nmare);
-            pare = poble.buscar_individu(npare);
-            
-            if (pare.consultar_sexe() != 'Y' or mare.consultar_sexe() != 'X') cout << "  no es posible reproduccion" << endl;
-            
-            else{
+                Individu pare, mare, fill;
+                
+                mare = poble.buscar_individu(nmare);
+                pare = poble.buscar_individu(npare);
+                
                 fill.reproduir(pare, mare, npare, nmare, esp);
 
                 poble.afegir_individu(nfill, fill);
             }
-                
-            }
-
+        
         }
+                
+ 
 
         else if (accio == "escribir_arbol_genealogico"){
         
@@ -97,8 +90,6 @@ int main(){
 
         else if (accio == "completar_arbol_genealogico"){
             poble.completar_arbre();
-            
-            
         }
 
         else if (accio == "escribir_poblacion"){

@@ -50,6 +50,10 @@ public:
     void afegir_individu(string nom, const Individu& p);
     
     
+    bool comprovar_reproduccio(string npare, string nmare, string nfill);
+    
+    bool buscar_descendent(Individu ind, string nom);
+    
     
     bool comprovar_individu(string nom);
 
@@ -62,9 +66,6 @@ public:
     void escriure_arbre(string nom);
     
     void buscar_arbre_nivells(Individu ind, queue<string>& cua_temp, queue<string>& cua_final, queue<int>& niv_temp, queue<int>& niv_final);
-    
-    
-    void buscar_descendents_cua(queue<string>& cua, Individu ind);
     
     
     /** @brief Completadora d'arbres.
@@ -81,8 +82,7 @@ public:
     void llegir_arbre_parcial(Arbre<string>& nom);
     
     void escriure_vector(vector<string> resultat);
-    
-    void escriure_temp(Arbre<string>); //temporal!
+   
     
     
     /** @brief Completadora d'arbres.

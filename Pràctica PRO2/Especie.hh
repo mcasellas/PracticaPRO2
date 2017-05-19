@@ -34,6 +34,15 @@ public:
     */
     Especie();
 
+    
+    // Lectura
+    
+    /** @brief Lectora de les dades que determinen la genètica d'una espècie.
+     
+     \pre Es preparen pel canal d'entrada els valors de <em>N</em>, (N+1) elements corresponents a la longitud de cada parell de cromosomes, la longitud del cromosoma x i la del y. <em>iparell</em> és el número del parell al que volem accedir (1 <= i <= N).
+     \post El resultat és la llargada dels cromosomes x.
+     */
+    void establir_genetica();
 
     /** @brief Consultora del nombre de cromosomes normals.
 
@@ -63,14 +72,6 @@ public:
     */
     int consultar_ln(int iparell) const;
 
-    // Lectura
-    
-    /** @brief Lectora de les dades que determinen la genètica d'una espècie.
-     
-     \pre Es preparen pel canal d'entrada els valors de <em>N</em>, (N+1) elements corresponents a la longitud de cada parell de cromosomes, la longitud del cromosoma x i la del y. <em>iparell</em> és el número del parell al que volem accedir (1 <= i <= N).
-     \post El resultat és la llargada dels cromosomes x.
-     */
-    void establir_genetica();
 
 private:
     int n, lx, ly;

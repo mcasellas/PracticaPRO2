@@ -10,16 +10,12 @@ void Especie::establir_genetica(){
     
     cin >> n;
 
-    
-
     for (int i = 0; i <= n; i++){
         int longit;
         cin >> longit;
         l.push_back(longit);
     }
-
     
-
     cin >> lx >> ly;
 }
 
