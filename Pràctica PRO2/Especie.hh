@@ -74,7 +74,18 @@ public:
 
 
 private:
-    int n, lx, ly;
+    /** @brief Número de cromosomes no sexuals (normals) */
+    int n;
+    
+    /** @brief Llargada dels cromosomes sexuals X */
+    int lx;
+    
+    /** @brief Llargada dels cromosomes sexuals Y */
+    int ly;
+    
+    /** @brief Llargada de cada parell de cromosomes
+     
+        Cada posició del vector correspon a la llargada del número de parell de cromosomes corresponent a aquesta */
     vector<int> l;
 };
  #endif

@@ -58,10 +58,16 @@ public:
     
     
 private:
+    /** @brief Cromosoma 1 */
     vector<int> c1;
+    /** @brief Cromosoma 2 */
     vector<int> c2;
     
-    
+    /** @brief Consultora d'un cromosoma.
+     
+     \pre El paràmetre explicit està inicialitzat amb el número del cromosoma que es vol consultar (0 pel primer, 1 pel segon).
+     \post Es retorna el vector corresponent al cromosoma del paràmetre explícit.
+     */
     vector<int> consultar_cromosoma(int num) const;
     
 };

@@ -33,28 +33,24 @@ bool Poblacio::comprovar_reproduccio(string npare, string nmare, string nfill){
     
     cout << "reproduccion_sexual " << nmare << ' ' << npare << ' ' << nfill << endl;
     
-    bool resultat = true;
+    bool resultat = existeix_individu(npare) and existeix_individu(nmare); // Cert si el nom dels pares estàn al sistema
     
-    resultat = existeix_individu(npare) and existeix_individu(nmare); // El nom dels pares estàn al sistema
-    if (resultat) resultat = not existeix_individu(nfill); // El nom del fill no apareix al sistema
+    if (resultat) resultat = not existeix_individu(nfill); // Cert si el nom del fill no apareix al sistema
     
-    if (not resultat) cout << "  error" << endl;
+    if (not resultat) cout << "  error" << endl; // Primer punt d'error
     
     else {
         
-        Individu pare, mare;
+        resultat = consultar_individu(npare).consultar_sexe() == 'Y' and consultar_individu(nmare).consultar_sexe() == 'X'; //  Cert si pare: Y i mare: X
         
-        pare = consultar_individu(npare);
-        mare = consultar_individu(nmare);
+        if (resultat and (consultar_individu(npare).consultar_pare() != "$")) {
+            
+        resultat = (consultar_individu(npare).consultar_pare() != consultar_individu(nmare).consultar_pare()) and (consultar_individu(npare).consultar_mare() != consultar_individu(nmare).consultar_mare()); // Cert si el pare i la mare no són germans (no tenen el mateix pare)
+        }
         
-        resultat = consultar_individu(npare).consultar_sexe() == 'Y' and consultar_individu(nmare).consultar_sexe() == 'X';
+        if (resultat) resultat = not buscar_ascendent(consultar_individu(npare), nmare); // Cert si el la mare no és ascendent del pare
         
-        if (resultat and (consultar_individu(npare).consultar_pare() != "$" or consultar_individu(nmare).consultar_pare() != "$")) resultat = (consultar_individu(npare).consultar_pare() != consultar_individu(nmare).consultar_pare()) or (consultar_individu(npare).consultar_mare() != consultar_individu(nmare).consultar_mare());
-    
-        
-        if (resultat) resultat = not buscar_ascendent(consultar_individu(npare), nmare);
-        
-        if (resultat) resultat = not buscar_ascendent(consultar_individu(nmare), npare);
+        if (resultat) resultat = not buscar_ascendent(consultar_individu(nmare), npare); // Cert si el la mare no és ascendent de la mare
         
         if (not resultat) cout << "  no es posible reproduccion" << endl;
     }
@@ -65,20 +61,6 @@ bool Poblacio::comprovar_reproduccio(string npare, string nmare, string nfill){
     
 }
 
-bool Poblacio::buscar_ascendent(Individu ind, string nom){
-    
-    bool resultat = false;
-    
-    if (ind.consultar_mare() == nom or ind.consultar_pare() == nom) resultat = true;
-    
-    else if (ind.consultar_pare() != "$") {
-        resultat = buscar_ascendent(consultar_individu(ind.consultar_pare()), nom);
-        if (not resultat) resultat = buscar_ascendent(consultar_individu(ind.consultar_mare()), nom);
-    }
-    
-    return resultat;
-    
-}
 
 void Poblacio::escriure_arbre_genealogic(string nom){
     cout << "escribir_arbol_genealogico " << nom << endl;
@@ -97,7 +79,7 @@ void Poblacio::escriure_arbre_genealogic(string nom){
         
         while (not cua_nom.empty()) {
             
-            if (consultar_individu(cua_nom.front()).consultar_pare() != "$") { // Amb comprovar-ne un n'hi ha prou
+            if (consultar_individu(cua_nom.front()).consultar_pare() != "$") {
                 cua_nom.push(consultar_individu(cua_nom.front()).consultar_pare());
                 cua_niv.push(cua_niv.front()+1);
                 
@@ -165,78 +147,6 @@ void Poblacio::completar_arbre(){
 }
 
 
-void Poblacio::buscar_arbre(Arbre<string>& arbre, string nom){
-    
-    Arbre<string> a1, a2;
-    
-    if (nom != "$"){
-        Individu ind = consultar_individu(nom);
-        
-        buscar_arbre(a1, consultar_individu(nom).consultar_pare());
-        buscar_arbre(a2, consultar_individu(nom).consultar_mare());
-        arbre.plantar(nom, a1, a2);
-    }
-    
-    else arbre.plantar(nom, a1, a2);
-
-}
-
-bool Poblacio::es_arbre_parcial(vector<string>& vecresultat, Arbre<string> acomplet, Arbre<string> aparcial){
-    
-    bool resultat = true;
- 
-    
-    
-    if (not acomplet.es_buit()) {
-        if (aparcial.es_buit()) { // Si és buit no podem obtenir l'arrel
-            
-            if (acomplet.arrel() != "$") vecresultat.push_back("*"+acomplet.arrel()+"*");
-            else vecresultat.push_back(acomplet.arrel());
-        }
-        
-        else if (aparcial.arrel() == "$" and  acomplet.arrel() != "$"){
-            
-            vecresultat.push_back("*"+acomplet.arrel()+"*");
-            
-        }
-        else if (aparcial.es_buit() or (aparcial.arrel() == acomplet.arrel())){
-            
-            vecresultat.push_back(acomplet.arrel());
-        }
-        
-        else if (aparcial.arrel() != acomplet.arrel()) {
-            resultat = false;
-        }
-        
-        Arbre<string> ac1, ac2, ap1, ap2;
-        
-        acomplet.fills(ac1, ac2);
-        if (not aparcial.es_buit()) aparcial.fills(ap1, ap2);
-        if (resultat) resultat = es_arbre_parcial(vecresultat, ac1, ap1);
-        if (resultat) resultat = es_arbre_parcial(vecresultat, ac2, ap2);
-        
-        
-    }
-    
-    return resultat;
-}
-
-void Poblacio::llegir_arbre_parcial(Arbre<string>& a){
-    
-    Arbre<string> a1, a2;
-    string nom;
-    cin >> nom;
-
-    if (nom != "$") {
-        llegir_arbre_parcial(a1);
-        llegir_arbre_parcial(a2);
-        a.plantar(nom,a1,a2);
-    }
-    
-    else a.plantar(nom, a1, a2);
-    
-}
-
 
 
 void Poblacio::escriure_poblacio() const{
@@ -250,7 +160,7 @@ void Poblacio::escriure_poblacio() const{
 }
 
 
-void Poblacio::llegir_individu(Especie esp){
+void Poblacio::llegir(Especie esp){
     
     string nom;
 
@@ -268,3 +178,97 @@ void Poblacio::llegir_individu(Especie esp){
     else cout << "  error" << endl;
 
 }
+
+
+
+//Privades
+
+bool Poblacio::buscar_ascendent(Individu ind, string nom){
+    
+    bool resultat = false;
+    
+    if (ind.consultar_mare() == nom or ind.consultar_pare() == nom) resultat = true;
+    
+    else if (ind.consultar_pare() != "$") {
+        resultat = buscar_ascendent(consultar_individu(ind.consultar_pare()), nom);
+        if (not resultat) resultat = buscar_ascendent(consultar_individu(ind.consultar_mare()), nom);
+    }
+    
+    return resultat;
+    
+}
+
+void Poblacio::buscar_arbre(Arbre<string>& arbre, string nom){
+    
+    Arbre<string> a1, a2;
+    
+    if (nom != "$"){
+        Individu ind = consultar_individu(nom);
+        
+        buscar_arbre(a1, consultar_individu(nom).consultar_pare());
+        buscar_arbre(a2, consultar_individu(nom).consultar_mare());
+        arbre.plantar(nom, a1, a2);
+    }
+    
+    else arbre.plantar(nom, a1, a2);
+    
+}
+
+bool Poblacio::es_arbre_parcial(vector<string>& vecresultat, Arbre<string> acomplet, Arbre<string> aparcial){
+    
+    bool resultat = true;
+    
+    
+    
+    if (not acomplet.es_buit()) {
+        if (aparcial.es_buit()) { // Si s'ha acabat l'arbre parcial afegim el que queda
+            
+            if (acomplet.arrel() != "$") vecresultat.push_back("*"+acomplet.arrel()+"*");
+            else vecresultat.push_back(acomplet.arrel());
+        }
+        
+        else if (aparcial.arrel() == "$" and  acomplet.arrel() != "$"){
+            
+            vecresultat.push_back("*"+acomplet.arrel()+"*");
+            
+        }
+        else if (aparcial.arrel() == acomplet.arrel()){
+            
+            vecresultat.push_back(acomplet.arrel());
+        }
+        
+        else if (aparcial.arrel() != acomplet.arrel()) {
+            resultat = false;
+        }
+        
+        if (resultat) {
+            Arbre<string> ac1, ac2, ap1, ap2;
+            
+            acomplet.fills(ac1, ac2);
+            if (not aparcial.es_buit()) aparcial.fills(ap1, ap2);
+            if (resultat) resultat = es_arbre_parcial(vecresultat, ac1, ap1);
+            if (resultat) resultat = es_arbre_parcial(vecresultat, ac2, ap2);
+        }
+        
+    }
+    
+    return resultat;
+}
+
+void Poblacio::llegir_arbre_parcial(Arbre<string>& a){
+    
+    Arbre<string> a1, a2;
+    string nom;
+    cin >> nom;
+    
+    if (nom != "$") {
+        llegir_arbre_parcial(a1);
+        llegir_arbre_parcial(a2);
+        a.plantar(nom,a1,a2);
+    }
+    
+    else a.plantar(nom, a1, a2);
+    
+}
+
+

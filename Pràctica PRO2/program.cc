@@ -55,7 +55,7 @@ int main(){
     while (cin >> accio and accio != "acabar"){
         
         if (accio == "anadir_individuo"){
-            poble.llegir_individu(esp);
+            poble.llegir(esp);
         }
 
         else if (accio == "reproduccion_sexual"){

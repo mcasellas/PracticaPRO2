@@ -35,78 +35,103 @@ public:
     */
     Poblacio();
 
-    /** @brief Consultora de l'individu que correspon al nom.
+    
+    /** @brief Consultora de l'individu corresponent al nom.
      
         \pre El paràmetre implicit està inicialitzat, l'explícit conté el nom de l'individu a buscar.
         \post Retorna l'individu que correspon al nom.
     */
     Individu consultar_individu(string nom);
     
+    
+    /** @brief Comprovadora de l'existència d'un individu.
+     
+     \pre El paràmetre implicit està inicialitzat, l'explícit conté el nom de l'individu a comprovar.
+     \post Si existeix l'individu a la població retrorna cert, en cas contrari, retorna fals.
+     */
+    bool existeix_individu(string nom);
+    
+
     /** @brief Inclosora de la població.
      
-        \pre El paràmetre implicit està inicialitzat, l'explícit conté l'individu a afegir.
+        \pre El paràmetre implicit està inicialitzat, l'explícit conté el nom i l'individu a afegir.
         \post Afegeix l'individu a la població.
     */
     void afegir_individu(string nom, const Individu& p);
     
     
+    /** @brief Comprovadora de la capacitat de reproducció.
+     
+     \pre El paràmetre implicit està inicialitzat, l'explícit conté el dels pares i el de l'individu a afegir.
+     \post Retorna cert si els els compleixen les condicions per poder-se reproduïr i el fill no existeix fins al moment. En cas contrari, retorna fals i s'escriu l'error corresponent pel canal de sortida.
+     */
     bool comprovar_reproduccio(string npare, string nmare, string nfill);
     
-    
-    
-    
-    bool existeix_individu(string nom);
-
 
     /** @brief Escriptora de l'arbre geneaològic d'un individu.
      
         \pre El paràmetre implicit està inicialitzat. Es prepara pel canal d'entrada el nom de l'individu que serà l'arrel de l'arbre.
-        \post S'imprimeix pel canal d'entrada l'arbre complet amb arrel establerta a l'individu.
+        \post S'imprimeix pel canal d'entrada l'arbre complet, per nivells, amb arrel establerta a l'individu.
     */
     void escriure_arbre_genealogic(string nom);
     
     
     /** @brief Completadora d'arbres.
      
-        \pre El paràmetre implicit està inicialitzat. Es preparen pel canal d'entrada els elements coneguts d'un arbre geneaològic.
-        \post S'imprimeix pel canal de sortida l'arbre complet amb arrel establerta a l'individu, marcant les individus que faltaven el d'entrada. Si l'arbre d'entrada no fos parcial es mostrarà "no es arbol parcial".
+        \pre El paràmetre implicit està inicialitzat. Es preparen pel canal d'entrada el nom dels individus coneguts d'un arbre geneaològic.
+        \post S'imprimeix pel canal de sortida l'arbre complet amb arrel establerta a l'individu, marcant les individus que faltaven a l'arbre d'entrada. Si l'arbre d'entrada no fos parcial (hi haguessin incoherències o es tractés d'un arbre complet) es mostrarà "no es arbol parcial" pel canal de sortida.
     */
     void completar_arbre();
     
-    
-    
-    
-    
-    
-    
-
-   
-    
-    
-    /** @brief Completadora d'arbres.
+    /** @brief Escriptora de la població.
      
         \pre El paràmetre implicit està inicialitzat.
         \post S'imprimeix pel canal de sortida tots els individus que formen la població per ordre alfabètic, amb el seu sexe i els noms del pare i de la mare.
     */
     void escriure_poblacio() const;
     
-
-    void llegir_individu(Especie esp);
+    /** @brief Lectora d'un individu de la població.
+     
+     \pre El paràmetre implicit està inicialitzat i l'explicit conté la espècie del individu a llegir.
+     \post Si l'individu no existeix a la població, s'hi afegeix.
+     */
+    void llegir(Especie esp);
 
 private:
     
+    /** @brief Comprovadora d'ascendents.
+     
+     \pre El paràmetre explicit conté l'individu del qual es vol coneixer si el segon paràmetre, el nom de l'individu a buscar, és un ascendent seu.
+     \post Si el nom és un ascendent de l'individu es retorna cert, en cas contrari es retorna fals..
+     */
     bool buscar_ascendent(Individu ind, string nom);
     
+    /** @brief Creadora d'arbre complet d'un individu.
+     
+     \pre El paràmetre explicit conté l'arbre a omplir i el nom de l'individu del qual volem crear l'arbre complet (cert).
+     \post Es retorna per referència l'arbre complet corresponent al nom de l'individu del paràmetre explicit.
+     */
     void buscar_arbre(Arbre<string>& arbre, string nom);
     
+    /** @brief Comprovadora d'arbre parcial.
+     
+     \pre El paràmetre explícit conté el vector a retornar en cas que sigui arbre parcial, l'arbre complet amb el qual volem comparar l'arbre parcial, que és el tercer paràmetre.
+     \post Es retorna cert si es tracta d'un arbre parcial i es retorna per referència un vector amb l'arbre parcial completat. En cas contrari, es retorna fals.
+     */
     bool es_arbre_parcial(vector<string>& resultat, Arbre<string> acomplet, Arbre<string> aparcial);
     
-    void llegir_arbre_parcial(Arbre<string>& nom);
+    
+    /** @brief Lectora de l'arbre parcial.
+     
+     \pre El paràmetre explicit conté l'arbre que es retornarà. Pel canal d'entrada es preparen els noms dels individus coneguts d'un arbre genealògic.
+     \post Es retorna per referència l'arbre parcial que s'ha llegit a través del canal d'entrada.
+     */
+    void llegir_arbre_parcial(Arbre<string>& a);
     
     
-    
-    
-    
+    /** @brief Representa una població
+        
+        Enllaça els individus pel seu nom i està ordenat per ordre alfabètic*/
     map<string,Individu> poble;
 };
 
