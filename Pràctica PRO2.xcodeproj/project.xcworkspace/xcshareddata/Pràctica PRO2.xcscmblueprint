@@ -9,7 +9,7 @@
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "AB7E2235-3B26-4D74-BA47-6BD46B4EEDDF",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "72CF1001643F16558005F12C322A9F5C27AD0BEA" : "",
+    "72CF1001643F16558005F12C322A9F5C27AD0BEA" : "..",
     "55B36F9DC5E3D7B6CE35720F4C0F2EB742C1079F" : "PRACTICA%20Github\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "Pràctica PRO2",

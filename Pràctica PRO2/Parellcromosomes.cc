@@ -1,3 +1,7 @@
+/** @file Parellcromosomes.cc
+ @brief Codi de la classe parellcromosomes
+ */
+
 #include "Parellcromosomes.hh"
 
 using namespace std;
@@ -7,43 +11,32 @@ Parell_cromosomes::Parell_cromosomes(){
 }
 
 void Parell_cromosomes::creuament(Parell_cromosomes pare, Parell_cromosomes mare, int npare, int nmare, int k, int lo){
-    vector<int> primerc;
-    vector<int> segonc;
-    
-    vector<int> resultat1;
-    vector<int> resultat2;
-    
-    primerc = mare.consultar_cromosoma(nmare);
-    segonc = pare.consultar_cromosoma(npare);
     
     int i;
     
-    for (i = 0; i < lo; i++){
+    for (i = 0; i < lo; i++){ // Fins al punt de creuament
         if (i < k) {
-            resultat1.push_back(primerc[i]);
-            resultat2.push_back(segonc[i]);
+            c1.push_back(mare.consultar_cromosoma(nmare)[i]);
+            c2.push_back(pare.consultar_cromosoma(npare)[i]);
         }
         else {
-            resultat1.push_back(segonc[i]);
-            resultat2.push_back(primerc[i]);
+            c1.push_back(pare.consultar_cromosoma(npare)[i]);
+            c2.push_back(mare.consultar_cromosoma(nmare)[i]);
         }
     }
-    if (i >= lo){
+    
+    if (i >= lo){ // Des del punt de creuament fins el final
         int aux = i;
-        while (primerc.size() != resultat1.size()){
-            resultat1.push_back(primerc[i]);
+        while (mare.consultar_cromosoma(nmare).size() != c1.size()){
+            c1.push_back(mare.consultar_cromosoma(nmare)[i]);
             ++i;
         }
         i = aux;
-        while (segonc.size() != resultat2.size()){
-            resultat2.push_back(segonc[i]);
+        while (pare.consultar_cromosoma(npare).size() != c2.size()){
+            c2.push_back(pare.consultar_cromosoma(npare)[i]);
             ++i;
         }
     }
-    
-    c1 = resultat1;
-    c2 = resultat2;
-    
 }
 
 

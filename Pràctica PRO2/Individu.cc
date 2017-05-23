@@ -1,3 +1,7 @@
+/** @file Individu.cc
+ @brief Codi de la classe individu
+ */
+
 #include "Individu.hh"
 
 using namespace std;

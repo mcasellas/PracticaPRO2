@@ -3,7 +3,7 @@
 
 S'ofereix un menú d'opcions per gestionar les classes que formen part de l'experiment genètic. S'introdueixen les classes <em>Especie</em> i <em>Poblacio</em>.
 
-Nomès es documenten elements públics.
+
 */
 
 /** @file main.cc
@@ -13,7 +13,7 @@ Nomès es documenten elements públics.
 
 #include "Especie.hh"
 #include "Poblacio.hh"
-#include "Individu.hh"
+
 
 #ifndef NO_DIAGRAM
 #include <iostream>
@@ -33,22 +33,7 @@ int main(){
 
     Poblacio poble;
     
-    int ninicials;
-    
-    cin >> ninicials;
-    
-    for (int i = 0; i < ninicials; i++) {
-        Individu ind;
-        string nom;
-        
-        cin >> nom;
-        
-        ind.llegir_individu(esp);
-            
-        poble.afegir_individu(nom,ind);
-
-        
-    }
+    poble.llegir_inicials(esp);
     
     string accio;
 
@@ -59,17 +44,11 @@ int main(){
         }
 
         else if (accio == "reproduccion_sexual"){
-            string nmare, npare, nfill;
-            cin >> nmare >> npare >> nfill;
+            string mare, pare, fill;
+            cin >> mare >> pare >> fill;
             
-            if (poble.comprovar_reproduccio(npare, nmare, nfill)){
-                
-                Individu fill;
-
-                fill.reproduir(poble.consultar_individu(npare), poble.consultar_individu(nmare), npare, nmare, esp);
-
-                poble.afegir_individu(nfill, fill);
-            }
+            poble.reproduir(pare, mare, fill, esp);
+            
         }
         
         else if (accio == "escribir_arbol_genealogico"){

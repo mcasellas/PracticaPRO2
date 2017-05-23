@@ -1,7 +1,6 @@
 /** @file Especie.hh
-    @brief Especificació de la clase Especie.
+    @brief Especificació de la clase especie.
 */
-
 #ifndef _ESPECIE_HH_
 #define _ESPECIE_HH_
 
@@ -33,9 +32,7 @@ public:
         \post El resultat és una espècie sense genetica inicial.
     */
     Especie();
-
     
-    // Lectura
     
     /** @brief Lectora de les dades que determinen la genètica d'una espècie.
      
@@ -44,12 +41,14 @@ public:
      */
     void establir_genetica();
 
+    
     /** @brief Consultora del nombre de cromosomes normals.
 
         \pre El paràmetre implicit està inicialitzat.
         \post El resultat és el nombre de cromosomes normals.
     */
     int consultar_n() const;
+    
     
     /** @brief Consultora de la llargada dels cromosomes X.
      
@@ -58,12 +57,14 @@ public:
     */
     int consultar_lx() const;
     
+    
     /** @brief Consultora de la llargada dels cromosomes Y.
      
      \pre El paràmetre implicit està inicialitzat.
      \post El resultat és la llargada dels cromosomes Y.
     */
     int consultar_ly() const;
+    
     
     /** @brief Consultora de la longitud d'un determinat parell de cromosomes.
      

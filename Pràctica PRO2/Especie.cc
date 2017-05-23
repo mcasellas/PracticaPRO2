@@ -1,3 +1,7 @@
+/** @file Especie.cc
+ @brief Codi de la classe espècie
+ */
+
 #include "Especie.hh"
 
 using namespace std;

@@ -1,3 +1,7 @@
+/** @file Poblacio.cc
+ @brief Codi de la classe població
+ */
+
 #include "Poblacio.hh"
 
 using namespace std;
@@ -18,7 +22,7 @@ Individu Poblacio::consultar_individu(string nom){
 
 bool Poblacio::existeix_individu(string nom){
     
-    for (map<string,Individu>::iterator it = poble.begin(); it != poble.end(); it++) {
+    for (map<string,Individu>::const_iterator it = poble.begin(); it != poble.end(); it++) {
         if ((*it).first == nom) return true;
     }
     
@@ -29,36 +33,18 @@ void Poblacio::afegir_individu(string nom, const Individu& p){
     poble[nom] = p;
 }
 
-bool Poblacio::comprovar_reproduccio(string npare, string nmare, string nfill){
+
+
+void Poblacio::reproduir(string pare, string mare, string fill, Especie esp){
     
-    cout << "reproduccion_sexual " << nmare << ' ' << npare << ' ' << nfill << endl;
+    if (comprovar_reproduccio(pare, mare, fill)){
+        
+    Individu ind;
     
-    bool resultat = existeix_individu(npare) and existeix_individu(nmare); // Cert si el nom dels pares estàn al sistema
+    ind.reproduir(consultar_individu(pare), consultar_individu(mare), pare, mare, esp);
     
-    if (resultat) resultat = not existeix_individu(nfill); // Cert si el nom del fill no apareix al sistema
-    
-    if (not resultat) cout << "  error" << endl; // Primer punt d'error
-    
-    else {
-        
-        resultat = consultar_individu(npare).consultar_sexe() == 'Y' and consultar_individu(nmare).consultar_sexe() == 'X'; //  Cert si pare: Y i mare: X
-        
-        if (resultat and (consultar_individu(npare).consultar_pare() != "$")) {
-            
-        resultat = (consultar_individu(npare).consultar_pare() != consultar_individu(nmare).consultar_pare()) and (consultar_individu(npare).consultar_mare() != consultar_individu(nmare).consultar_mare()); // Cert si el pare i la mare no són germans (no tenen el mateix pare)
-        }
-        
-        if (resultat) resultat = not buscar_ascendent(consultar_individu(npare), nmare); // Cert si el la mare no és ascendent del pare
-        
-        if (resultat) resultat = not buscar_ascendent(consultar_individu(nmare), npare); // Cert si el la mare no és ascendent de la mare
-        
-        if (not resultat) cout << "  no es posible reproduccion" << endl;
+    afegir_individu(fill, ind);
     }
-    
-    
-    
-    return resultat;
-    
 }
 
 
@@ -179,6 +165,23 @@ void Poblacio::llegir(Especie esp){
 
 }
 
+void Poblacio::llegir_inicials(Especie esp){
+    int ninicials;
+    
+    cin >> ninicials;
+    
+    for (int i = 0; i < ninicials; i++) {
+        Individu ind;
+        string nom;
+        
+        cin >> nom;
+        
+        ind.llegir_individu(esp);
+        
+        afegir_individu(nom,ind);
+    }
+}
+
 
 
 //Privades
@@ -203,8 +206,6 @@ void Poblacio::buscar_arbre(Arbre<string>& arbre, string nom){
     Arbre<string> a1, a2;
     
     if (nom != "$"){
-        Individu ind = consultar_individu(nom);
-        
         buscar_arbre(a1, consultar_individu(nom).consultar_pare());
         buscar_arbre(a2, consultar_individu(nom).consultar_mare());
         arbre.plantar(nom, a1, a2);
@@ -225,6 +226,7 @@ bool Poblacio::es_arbre_parcial(vector<string>& vecresultat, Arbre<string> acomp
             
             if (acomplet.arrel() != "$") vecresultat.push_back("*"+acomplet.arrel()+"*");
             else vecresultat.push_back(acomplet.arrel());
+            
         }
         
         else if (aparcial.arrel() == "$" and  acomplet.arrel() != "$"){
@@ -268,6 +270,38 @@ void Poblacio::llegir_arbre_parcial(Arbre<string>& a){
     }
     
     else a.plantar(nom, a1, a2);
+    
+}
+
+bool Poblacio::comprovar_reproduccio(string npare, string nmare, string nfill){
+    
+    cout << "reproduccion_sexual " << nmare << ' ' << npare << ' ' << nfill << endl;
+    
+    bool resultat = existeix_individu(npare) and existeix_individu(nmare); // Cert si el nom dels pares estàn al sistema
+    
+    if (resultat) resultat = not existeix_individu(nfill); // Cert si el nom del fill no apareix al sistema
+    
+    if (not resultat) cout << "  error" << endl; // Primer punt d'error
+    
+    else {
+        
+        resultat = consultar_individu(npare).consultar_sexe() == 'Y' and consultar_individu(nmare).consultar_sexe() == 'X'; //  Cert si pare: Y i mare: X
+        
+        if (resultat and (consultar_individu(npare).consultar_pare() != "$")) {
+            
+            resultat = (consultar_individu(npare).consultar_pare() != consultar_individu(nmare).consultar_pare()) and (consultar_individu(npare).consultar_mare() != consultar_individu(nmare).consultar_mare()); // Cert si el pare i la mare no són germans (no tenen el mateix pare)
+        }
+        
+        if (resultat) resultat = not buscar_ascendent(consultar_individu(npare), nmare); // Cert si el la mare no és ascendent del pare
+        
+        if (resultat) resultat = not buscar_ascendent(consultar_individu(nmare), npare); // Cert si el la mare no és ascendent de la mare
+        
+        if (not resultat) cout << "  no es posible reproduccion" << endl;
+    }
+    
+    
+    
+    return resultat;
     
 }
 

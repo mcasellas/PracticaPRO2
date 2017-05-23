@@ -1,5 +1,5 @@
 /** @file Parellcromosomes.hh
- @brief Especificació de la clase Parell_cromosomes.
+ @brief Especificació de la clase parellcromosomes.
  */
 
 #ifndef _PARELLCROMOSOMES_HH_

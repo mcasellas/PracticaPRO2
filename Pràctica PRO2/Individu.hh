@@ -1,5 +1,5 @@
 /** @file Individu.hh
- @brief Especificació de la clase Individu.
+ @brief Especificació de la clase individu.
 */
 
 #ifndef _INDIVIDU_HH_

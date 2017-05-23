@@ -1,14 +1,15 @@
 /** @file Poblacio.hh
- @brief Especificació de la clase Poblacio.
+ @brief Especificació de la clase poblacio.
  */
 
 #ifndef _POBLACIO_HH_
 #define _POBLACIO_HH_
 
 #include "Individu.hh"
-#include "Arbre.hh"
+
 
 #ifndef NO_DIAGRAM
+#include "Arbre.hh"
 #include <queue>
 #include <iostream>
 #include <map>
@@ -65,7 +66,7 @@ public:
      \pre El paràmetre implicit està inicialitzat, l'explícit conté el dels pares i el de l'individu a afegir.
      \post Retorna cert si els els compleixen les condicions per poder-se reproduïr i el fill no existeix fins al moment. En cas contrari, retorna fals i s'escriu l'error corresponent pel canal de sortida.
      */
-    bool comprovar_reproduccio(string npare, string nmare, string nfill);
+    void reproduir(string pare, string mare, string fill, Especie esp);
     
 
     /** @brief Escriptora de l'arbre geneaològic d'un individu.
@@ -92,10 +93,19 @@ public:
     
     /** @brief Lectora d'un individu de la població.
      
-     \pre El paràmetre implicit està inicialitzat i l'explicit conté la espècie del individu a llegir.
+     \pre El paràmetre implicit està inicialitzat i l'explicit conté la espècie del individu a llegir. Es prepara pel canal d'entrada el nom de l'individu.
      \post Si l'individu no existeix a la població, s'hi afegeix.
      */
     void llegir(Especie esp);
+    
+    
+    /** @brief Lectora dels primers individus de la població.
+     
+     \pre El paràmetre implicit està inicialitzat i l'explicit conté la espècie del individu a llegir. Es preparen pel canal d'entrada el número d'individus inicials i els noms dels individus.
+     \post S'afegeixen els individus a la població amb els pares establerts a "$"
+     */
+    void llegir_inicials(Especie esp);
+    
 
 private:
     
@@ -127,6 +137,14 @@ private:
      \post Es retorna per referència l'arbre parcial que s'ha llegit a través del canal d'entrada.
      */
     void llegir_arbre_parcial(Arbre<string>& a);
+    
+    
+    /** @brief Comprovadora de la capacitat de reproducció.
+     
+     \pre El paràmetre implicit està inicialitzat, l'explícit conté el dels pares i el de l'individu a afegir.
+     \post Retorna cert si els els compleixen les condicions per poder-se reproduïr i el fill no existeix fins al moment. En cas contrari, retorna fals i s'escriu l'error corresponent pel canal de sortida.
+     */
+    bool comprovar_reproduccio(string pare, string mare, string fill);
     
     
     /** @brief Representa una població
