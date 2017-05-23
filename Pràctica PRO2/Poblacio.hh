@@ -61,10 +61,10 @@ public:
     void afegir_individu(string nom, const Individu& p);
     
     
-    /** @brief Comprovadora de la capacitat de reproducció.
+    /** @brief Reproducció d'individus del poble.
      
-     \pre El paràmetre implicit està inicialitzat, l'explícit conté el dels pares i el de l'individu a afegir.
-     \post Retorna cert si els els compleixen les condicions per poder-se reproduïr i el fill no existeix fins al moment. En cas contrari, retorna fals i s'escriu l'error corresponent pel canal de sortida.
+     \pre El paràmetre implicit està inicialitzat, l'explícit conté el dels pares, el de l'individu a afegir i l'espècie.
+     \post Si és possible la reproducció, s'afegeix el fill al poble, en cas contrari es retornarà l'error corresponent.
      */
     void reproduir(string pare, string mare, string fill, Especie esp);
     
