@@ -4,11 +4,11 @@
 
 Una seqüència d’instruccions seguint el format de l’enunciat de la pràctica i del joc de proves public.
 
-## Sortida:
+## Sortida:
 
 El seu resultat seguint el format de l’enunciat de la pràctica i del joc de proves public.
 
-## Observació:
+## Observació:
 
 El Jutge prova el vostre lliurament mitjançant 4 jocs de proves:
 
