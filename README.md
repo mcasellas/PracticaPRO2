@@ -1,14 +1,14 @@
 # Pràctica: Experiments en un laboratori
 
-## Entrada
+## Entrada:
 
 Una seqüència d’instruccions seguint el format de l’enunciat de la pràctica i del joc de proves public.
 
-## Sortida
+## Sortida:
 
 El seu resultat seguint el format de l’enunciat de la pràctica i del joc de proves public.
 
-## Observació
+## Observació:
 
 El Jutge prova el vostre lliurament mitjançant 4 jocs de proves:
 
@@ -18,7 +18,7 @@ El Jutge prova el vostre lliurament mitjançant 4 jocs de proves:
 - privat3: joc de proves privat que fa èmfasi en l’operació d’arbre genealògic completable.
 - Són els mateixos jocs de proves que els de la pràctica provisional.
 
-## Entrada:
+### Entrada:
 
 ```
 5
@@ -227,7 +227,7 @@ acabar
 
 ```
 
-## SORTIDA:
+### SORTIDA:
 
 ```
 anadir_individuo b4
