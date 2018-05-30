@@ -1,3 +1,6 @@
+### Joc de proves:
+
+```
 2
 4 8 3
 4 6
@@ -67,3 +70,4 @@ completar_arbol_genealogico
 c2 b1 $ $ $
 
 escribir_poblacion
+```
